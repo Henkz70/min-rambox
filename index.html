@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { margin: 0; display: flex; height: 100vh; font-family: sans-serif; }
+    #sidebar { width: 70px; background: #2c3e50; display: flex; flex-direction: column; align-items: center; padding-top: 20px; }
+    .nav-button { width: 50px; height: 50px; margin-bottom: 15px; cursor: pointer; border-radius: 8px; border: none; background: #34495e; color: white; font-size: 10px; }
+    .nav-button:hover { background: #1abc9c; }
+    #content { flex-grow: 1; position: relative; }
+    webview { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none; }
+    webview.active { display: flex; }
+  </style>
+</head>
+<body>
+
+  <div id="sidebar">
+    <button class="nav-button" onclick="showApp('discord')">Discord</button>
+    <button class="nav-button" onclick="showApp('whatsapp')">WA</button>
+  </div>
+
+  <div id="content">
+    <webview id="discord" src="https://discord.com" class="active"></webview>
+    <webview id="whatsapp" src="https://web.whatsapp.com" useragent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"></webview>
+  </div>
+
+  <script>
+    function showApp(id) {
+      document.querySelectorAll('webview').forEach(wv => wv.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
+</body>
+</html>
