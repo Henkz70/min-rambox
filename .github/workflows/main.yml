@@ -1,0 +1,21 @@
+name: Build EXE
+on: [push]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm install
+      - name: Build Electron App
+        run: npm run dist
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: min-rambox-exe
+          path: dist/*.exe
